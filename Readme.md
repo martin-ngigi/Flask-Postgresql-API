@@ -97,3 +97,26 @@ Grant database access to the user you created above:
                 "success": true,
                 "total_pets": 2
             }
+
+3. PATCH -> Update pet
+- endpoint -> http://127.0.0.1:5000/pets/1
+- body :
+
+            {
+                "pet_name": "Winnie 2",
+                "pet_type": "Cat 3",
+                "pet_age": 3,
+                "pet_description": "My pet 1"
+            }
+- response:
+
+            {
+                "pet": {
+                    "pet_age": 3,
+                    "pet_description": "My pet 1",
+                    "pet_name": "Winnie 2",
+                    "pet_type": "Cat 3"
+                },
+                "response": "Pet Details updated",
+                "success": true
+            }

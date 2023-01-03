@@ -78,3 +78,23 @@ def getpets():
                 "total_pets": len(pets),
             }
         )
+
+@cross_origin()  
+@app.route("/pets/<int:pet_id>", methods = ["PATCH"])
+def update_pet(pet_id):
+    pet = Pet.query.get(pet_id)
+    pet_name = request.json['pet_name']
+    pet_type = request.json['pet_type']
+    pet_age = request.json['pet_age']
+    pet_description = request.json['pet_description']
+
+    if pet is None:
+        abort(404)
+    else:
+        pet.pet_name = pet_name
+        pet.pet_type = pet_type
+        pet.pet_age = pet_age
+        pet.pet_description = pet_description
+        db.session.add(pet)
+        db.session.commit()
+        return jsonify({"success": True, "response": "Pet Details updated", "pet": request.json})
