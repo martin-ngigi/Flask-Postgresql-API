@@ -55,3 +55,26 @@ def create_pet():
     
 
     return jsonify({"success": True,"response":"Pet added successfully", "pet": pet_data})
+
+
+@cross_origin()    
+@app.route('/get-pets', methods = ['GET'])
+def getpets():
+     all_pets = []
+     pets = Pet.query.all()
+     for pet in pets:
+          results = {
+                    "pet_id":pet.id,
+                    "pet_name":pet.pet_name,
+                    "pet_age":pet.pet_age,
+                    "pet_type":pet.pet_type,
+                    "pet_description":pet.pet_description, }
+          all_pets.append(results)
+
+     return jsonify(
+            {
+                "success": True,
+                "pets": all_pets,
+                "total_pets": len(pets),
+            }
+        )

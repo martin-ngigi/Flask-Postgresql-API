@@ -17,9 +17,9 @@
 
             pip install -r requirements.txt
 - Create a new file in your project folder named app.py
-<!-- - Runs the Flask development server(i.e. app.py):
+- Runs the Flask development server(i.e. app.py):
 
-            python -m flask run -->
+            flask run
 
 # Postgresql
 - Download Postgresql DB latest version, install copy the password while installing.
@@ -71,4 +71,29 @@ Grant database access to the user you created above:
                 },
                 "response": "Pet added successfully",
                 "success": true
+            }
+
+2. GET -> Retrieve all pets
+- endpoint -> http://127.0.0.1:5000/get-pets
+- response :
+
+            {
+                "pets": [
+                    {
+                        "pet_age": 22,
+                        "pet_description": "1",
+                        "pet_id": 1,
+                        "pet_name": "Kelly",
+                        "pet_type": "Cat"
+                    },
+                    {
+                        "pet_age": 2,
+                        "pet_description": "My pet",
+                        "pet_id": 2,
+                        "pet_name": "Winnie",
+                        "pet_type": "Cat"
+                    }
+                ],
+                "success": true,
+                "total_pets": 2
             }
