@@ -39,6 +39,7 @@ def index():
     return jsonify({"message": "Hello. Its Wainaina"})
 
 
+#http://127.0.0.1:5000/pets
 @cross_origin()
 @app.route('/pets', methods = ['POST'])
 def create_pet():
@@ -56,7 +57,7 @@ def create_pet():
 
     return jsonify({"success": True,"response":"Pet added successfully", "pet": pet_data})
 
-
+#http://127.0.0.1:5000/get-pets
 @cross_origin()    
 @app.route('/get-pets', methods = ['GET'])
 def getpets():
@@ -79,6 +80,7 @@ def getpets():
             }
         )
 
+#http://127.0.0.1:5000/pets/1
 @cross_origin()  
 @app.route("/pets/<int:pet_id>", methods = ["PATCH"])
 def update_pet(pet_id):
@@ -98,3 +100,16 @@ def update_pet(pet_id):
         db.session.add(pet)
         db.session.commit()
         return jsonify({"success": True, "response": "Pet Details updated", "pet": request.json})
+
+#http://127.0.0.1:5000/pets/1
+@cross_origin()  
+@app.route("/pets/<int:pet_id>", methods = ["DELETE"])
+def delete_pet(pet_id):
+    pet = Pet.query.get(pet_id)
+
+    if pet is None:
+        abort(404)
+    else:
+        db.session.delete(pet)
+        db.session.commit()
+        return jsonify({"success": True, "response": "Pet deleted successfully"})

@@ -120,3 +120,12 @@ Grant database access to the user you created above:
                 "response": "Pet Details updated",
                 "success": true
             }
+
+4. DELET - delete pet
+- endpoint -> http://127.0.0.1:5000/pets/1
+response -> 
+
+            {
+                "response": "Pet deleted successfully",
+                "success": true
+            }
